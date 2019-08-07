@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/services.dart';
 
@@ -19,6 +20,9 @@ class AppInstaller {
   ///安装 Apk
   ///[filePath] Apk file path
   static Future<void> installApk(String filePath) async {
-    _channel.invokeMethod('installApk', {'filePath': filePath});
+    //判断 Android 平台
+    if (Platform.isAndroid) {
+      _channel.invokeMethod('installApk', {'filePath': filePath});
+    }
   }
 }

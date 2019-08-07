@@ -3,14 +3,12 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'app_installer'
-  s.version          = '0.0.1'
-  s.summary          = 'A new Flutter plugin.'
-  s.description      = <<-DESC
-A new Flutter plugin.
-                       DESC
-  s.homepage         = 'http://example.com'
+  s.version          = '0.1.0'
+  s.summary          = 'App Installer'
+  s.description      = 'App Installer'
+  s.homepage         = 'https://github.com/yy1300326388/app_installer'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = { 'Zero' => 'zhengsonglan001@gmail.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'

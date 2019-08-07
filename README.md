@@ -1,2 +1,12 @@
 # app_installer
-App 安装器
+Install the application
+
+### iOS
+
+* Open AppStore app page
+* Open AppStore app reviews
+
+### Android
+
+* Open google play app page
+* Install Apk File

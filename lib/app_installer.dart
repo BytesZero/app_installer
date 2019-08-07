@@ -18,11 +18,11 @@ class AppInstaller {
   }
 
   ///安装 Apk
-  ///[filePath] Apk file path
-  static Future<void> installApk(String filePath) async {
+  ///[apkPath] Apk file path
+  static Future<void> installApk(String apkPath) async {
     //判断 Android 平台
     if (Platform.isAndroid) {
-      _channel.invokeMethod('installApk', {'filePath': filePath});
+      _channel.invokeMethod('installApk', {'apkPath': apkPath});
     }
   }
 }

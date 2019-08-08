@@ -6,16 +6,27 @@ Install the application
 * Open AppStore app page
 * Open AppStore app reviews
 
-<img src="https://raw.githubusercontent.com/yy1300326388/app_installer/develop/images/iOS_Go_Store.gif" width="220"/>
-<img src="https://raw.githubusercontent.com/yy1300326388/app_installer/develop/images/iOS_Review.gif" width="220"/>
+<table>
+    <tr>
+        <img src="https://raw.githubusercontent.com/yy1300326388/app_installer/develop/images/iOS_Go_Store.gif" width="220"/>
+        <nbsp>
+        <img src="https://raw.githubusercontent.com/yy1300326388/app_installer/develop/images/iOS_Review.gif" width="220"/>
+    </tr>
+</table>
+
 
 ### Android
 
 * Open google play app page
 * Install Apk File
 
-<img src="https://raw.githubusercontent.com/yy1300326388/app_installer/develop/images/Android_Go_Store.gif" width="220"/>
-<img src="https://raw.githubusercontent.com/yy1300326388/app_installer/develop/images/install_apk.gif" width="220"/>
+<table>
+    <tr>
+        <img src="https://raw.githubusercontent.com/yy1300326388/app_installer/develop/images/Android_Go_Store.gif" width="220"/>
+        <nbsp>
+        <img src="https://raw.githubusercontent.com/yy1300326388/app_installer/develop/images/install_apk.gif" width="220"/>
+    </tr>
+</table>
 
 ## Issues and feedback
 

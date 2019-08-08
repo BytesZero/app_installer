@@ -1,12 +1,12 @@
-# app_installer_example
+# App 安装器示例
 
-Demonstrates how to use the app_installer plugin.
+如何使用 App 安装器插件
 
-[中文使用文档](https://github.com/yy1300326388/app_installer/tree/master/example/README_CN.md)
+[English](https://github.com/yy1300326388/app_installer/tree/master/example)
 
-## Getting Started
+## 入门
 
-- Open Store
+- 打开应用商店
 
 ```
 /// App Info
@@ -16,13 +16,13 @@ String iOSAppId = '1440249706';
 AppInstaller.goStore(androidAppId, iOSAppId);
 ```
 
-- Open Review
+- 打开 iOS 评价应用页面
 
 ```
 AppInstaller.goStore(androidAppId, iOSAppId, review: true);
 ```
 
-- Install Apk
+- 安装 Apk
 
 ```
 AppInstaller.installApk('/sdcard/apk/app-debug.apk');

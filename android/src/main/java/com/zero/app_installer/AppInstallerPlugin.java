@@ -19,7 +19,7 @@ import io.flutter.plugin.common.PluginRegistry;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /** AppInstallerPlugin */
-public class AppInstallerPlugin implements MethodChannel.MethodCallHandler, PluginRegistry.ActivityResultListener  {
+public class AppInstallerPlugin implements MethodChannel.MethodCallHandler, PluginRegistry.ActivityResultListener {
   private final Registrar mRegistrar;
 
   public AppInstallerPlugin(Registrar mRegistrar) {
@@ -57,7 +57,7 @@ public class AppInstallerPlugin implements MethodChannel.MethodCallHandler, Plug
       if (!TextUtils.isEmpty(filePath)) {
         installProcess(new File(filePath), result);
       } else {
-        result.error("installApk","apkPath is null",null);
+        result.error("installApk", "apkPath is null", null);
       }
     } else {
       result.notImplemented();
@@ -77,7 +77,8 @@ public class AppInstallerPlugin implements MethodChannel.MethodCallHandler, Plug
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       haveInstallPermission = mRegistrar.context().getPackageManager().canRequestPackageInstalls();
       if (!haveInstallPermission) {
-        Toast.makeText(mRegistrar.activeContext(), "安装应用需要打开未知来源权限，请去设置中开启权限", Toast.LENGTH_LONG).show();
+        // Toast.makeText(mRegistrar.activeContext(), "安装应用需要打开未知来源权限，请去设置中开启权限",
+        // Toast.LENGTH_LONG).show();
         startInstallPermissionSettingActivity();
       }
     }

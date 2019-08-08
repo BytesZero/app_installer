@@ -1,5 +1,5 @@
 PODS:
-  - app_installer (0.0.1):
+  - app_installer (0.1.0):
     - Flutter
   - Flutter (1.0.0)
 
@@ -14,9 +14,9 @@ EXTERNAL SOURCES:
     :path: ".symlinks/flutter/ios"
 
 SPEC CHECKSUMS:
-  app_installer: c2fbfd0dd3a3d432fd632ea53457bbe7fada4d33
+  app_installer: c0d3e58ec1f19df67307d7e988d5e0ccf8a47a52
   Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
 
 PODFILE CHECKSUM: 7fb83752f59ead6285236625b82473f90b1cb932
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.7.3

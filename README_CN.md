@@ -1,13 +1,13 @@
 # app_installer
 
-Install the application
+App 安装器
 
-[中文说明](https://github.com/yy1300326388/app_installer/tree/master/README_CN.md)
+[English](https://github.com/yy1300326388/app_installer)
 
 ### iOS
 
-* Open AppStore app page
-* Open AppStore app reviews
+* 打开 AppStore 应用信息页面
+* 打开 AppStore 评价应用页面
 
  <img src="https://raw.githubusercontent.com/yy1300326388/app_installer/develop/images/iOS_Go_Store.gif" width="220"/>
 <img src="https://raw.githubusercontent.com/yy1300326388/app_installer/develop/images/iOS_Review.gif" width="220"/>
@@ -15,18 +15,17 @@ Install the application
 
 ### Android
 
-* Open google play app page
-* Install Apk File (Detect unknown source)
+* 打开应用商店
+* 安装 Apk（检测未知来源）
 
 
 <img src="https://raw.githubusercontent.com/yy1300326388/app_installer/develop/images/Android_Go_Store.gif" width="220"/>
 <img src="https://raw.githubusercontent.com/yy1300326388/app_installer/develop/images/install_apk.gif" width="220"/>
 
+## 入门文档
 
-## Getting Started
+[查看使用文档](https://github.com/yy1300326388/app_installer/tree/master/example/README_CN.md)
 
-[Getting Started](https://github.com/yy1300326388/app_installer/tree/master/example)
+## 问题反馈
 
-## Issues and feedback
-
-Please file [issues](https://github.com/yy1300326388/app_installer/issues/new) to send feedback or report a bug. Thank you!
+如果有任何意见和问题请提 [issues](https://github.com/yy1300326388/app_installer/issues/new) 反馈给我，非常感谢

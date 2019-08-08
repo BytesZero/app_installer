@@ -9,10 +9,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  /// 应用市场信息
+  String androidAppId = 'com.tengyue360.student';
+  String iOSAppId = '1440249706';
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class _MyAppState extends State<MyApp> {
               SizedBox(height: 80),
               FlatButton.icon(
                 onPressed: () {
-                  AppInstaller.goStore('com.zero.android', 'com.zero.ios');
+                  AppInstaller.goStore(androidAppId, iOSAppId);
                 },
                 icon: Icon(Icons.store),
                 label: Text('Go Store'),
@@ -35,7 +34,7 @@ class _MyAppState extends State<MyApp> {
               SizedBox(height: 40),
               FlatButton.icon(
                 onPressed: () {
-                  AppInstaller.goStore('com.zero.android', 'com.zero.ios');
+                  AppInstaller.goStore(androidAppId, iOSAppId, review: true);
                 },
                 icon: Icon(Icons.rate_review),
                 label: Text('Go Store Review'),
@@ -43,8 +42,7 @@ class _MyAppState extends State<MyApp> {
               SizedBox(height: 40),
               FlatButton.icon(
                 onPressed: () {
-                  AppInstaller.installApk(
-                      'com.zero.android.cache/apk/app_2.1.0_32.apk');
+                  AppInstaller.installApk('/sdcard/apk/app-debug.apk');
                 },
                 icon: Icon(Icons.arrow_downward),
                 label: Text('Install Apk'),

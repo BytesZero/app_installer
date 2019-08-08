@@ -26,6 +26,6 @@ App 安装器
 
 [查看使用文档](https://github.com/yy1300326388/app_installer/tree/master/example/README_CN.md)
 
-## Issues and feedback
+## 问题反馈
 
-Please file [issues](https://github.com/yy1300326388/app_installer/issues/new) to send feedback or report a bug. Thank you!
+如果有任何意见和问题请提 [issues](https://github.com/yy1300326388/app_installer/issues/new) 反馈给我，非常感谢

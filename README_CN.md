@@ -4,6 +4,8 @@ App 安装器
 
 [English](https://github.com/yy1300326388/app_installer)
 
+[![Codemagic build status](https://api.codemagic.io/apps/5d5610bc6a6c3600097b4391/5d5610bc6a6c3600097b4390/status_badge.svg)](https://codemagic.io/apps/5d5610bc6a6c3600097b4391/5d5610bc6a6c3600097b4390/latest_build)
+
 ### iOS
 
 * 打开 AppStore 应用信息页面

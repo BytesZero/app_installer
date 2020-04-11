@@ -2,18 +2,26 @@ package com.zero.app_installer;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.Settings;
+
+import androidx.lifecycle.Lifecycle;
 
 import androidx.core.content.FileProvider;
 
 import android.text.TextUtils;
-import android.widget.Toast;
 
 import java.io.File;
 
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.embedding.engine.plugins.activity.ActivityAware;
+import io.flutter.embedding.engine.plugins.activity.ActivityControlSurface;
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
+import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.Result;
@@ -23,11 +31,17 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 /**
  * AppInstallerPlugin
  */
-public class AppInstallerPlugin implements MethodChannel.MethodCallHandler, PluginRegistry.ActivityResultListener {
+public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodChannel.MethodCallHandler, PluginRegistry.ActivityResultListener {
+
+    private Context applicationContext;
+    private Activity mActivity;
+    private MethodChannel methodChannel;
+
     private final Registrar mRegistrar;
 
     public AppInstallerPlugin(Registrar mRegistrar) {
         this.mRegistrar = mRegistrar;
+        this.mActivity = mRegistrar.activity();
         this.mRegistrar.addActivityResultListener(this);
     }
 
@@ -35,8 +49,47 @@ public class AppInstallerPlugin implements MethodChannel.MethodCallHandler, Plug
      * Plugin registration.
      */
     public static void registerWith(Registrar registrar) {
-        final MethodChannel channel = new MethodChannel(registrar.messenger(), "app_installer");
-        channel.setMethodCallHandler(new AppInstallerPlugin(registrar));
+        AppInstallerPlugin instance = new AppInstallerPlugin(registrar);
+        instance.onAttachedToEngine(registrar.context(), registrar.messenger());
+    }
+
+    @Override
+    public void onAttachedToEngine(FlutterPluginBinding binding) {
+        onAttachedToEngine(binding.getApplicationContext(), binding.getBinaryMessenger());
+    }
+
+    private void onAttachedToEngine(Context applicationContext, BinaryMessenger messenger) {
+        this.applicationContext = applicationContext;
+        methodChannel = new MethodChannel(messenger, "app_installer");
+        methodChannel.setMethodCallHandler(this);
+    }
+
+    @Override
+    public void onDetachedFromEngine(FlutterPluginBinding binding) {
+        this.applicationContext = null;
+        methodChannel.setMethodCallHandler(null);
+        methodChannel = null;
+    }
+
+    @Override
+    public void onAttachedToActivity(ActivityPluginBinding binding) {
+        this.mActivity = binding.getActivity();
+        binding.addActivityResultListener(this);
+    }
+
+    @Override
+    public void onDetachedFromActivityForConfigChanges() {
+
+    }
+
+    @Override
+    public void onReattachedToActivityForConfigChanges(ActivityPluginBinding binding) {
+        onAttachedToActivity(binding);
+    }
+
+    @Override
+    public void onDetachedFromActivity() {
+        this.mActivity = null;
     }
 
     @Override
@@ -44,19 +97,7 @@ public class AppInstallerPlugin implements MethodChannel.MethodCallHandler, Plug
         String method = call.method;
         if (method.equals("goStore")) {
             String appId = (String) call.argument("androidAppId");
-            String appPackageName;
-            // 获取包名
-            if (appId != null) {
-                appPackageName = appId;
-            } else {
-                appPackageName = mRegistrar.activity().getPackageName();
-            }
-            // 去应用商店
-            Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName));
-            marketIntent.addFlags(
-                    Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-            mRegistrar.activity().startActivity(marketIntent);
-
+            goAppStore(mActivity, appId);
             result.success(true);
         } else if (method.equals("installApk")) {
             String filePath = call.argument("apkPath");
@@ -70,18 +111,43 @@ public class AppInstallerPlugin implements MethodChannel.MethodCallHandler, Plug
         }
     }
 
+    /**
+     * 去应用商店
+     *
+     * @param appId appId
+     */
+    private void goAppStore(Activity activity, String appId) {
+        String appPackageName;
+        // 获取包名
+        if (appId != null) {
+            appPackageName = appId;
+        } else {
+            appPackageName = activity.getPackageName();
+        }
+        // 去应用商店
+        Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName));
+        marketIntent.addFlags(
+                Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        activity.startActivity(marketIntent);
+    }
+
     // 安装apkFile
     private File apkFile;
     // 回调处理
     private Result result;
 
-    // 安装应用的流程
+    /**
+     * 安装应用的流程
+     *
+     * @param apkFile apk 文件
+     * @param result  返回结果
+     */
     private void installProcess(File apkFile, Result result) {
         this.apkFile = apkFile;
         this.result = result;
         boolean haveInstallPermission;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            haveInstallPermission = mRegistrar.context().getPackageManager().canRequestPackageInstalls();
+            haveInstallPermission = this.applicationContext.getPackageManager().canRequestPackageInstalls();
             if (!haveInstallPermission) {
                 startInstallPermissionSettingActivity();
             } else {
@@ -99,10 +165,10 @@ public class AppInstallerPlugin implements MethodChannel.MethodCallHandler, Plug
      */
     @TargetApi(Build.VERSION_CODES.O)
     private void startInstallPermissionSettingActivity() {
-        Uri packageURI = Uri.parse("package:" + mRegistrar.context().getPackageName());
+        Uri packageURI = Uri.parse("package:" + applicationContext.getPackageName());
         // 注意这个是8.0新API
         Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI);
-        mRegistrar.activity().startActivityForResult(intent, 10086);
+        this.mActivity.startActivityForResult(intent, 10086);
     }
 
     /**
@@ -116,13 +182,13 @@ public class AppInstallerPlugin implements MethodChannel.MethodCallHandler, Plug
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                Uri contentUri = FileProvider.getUriForFile(mRegistrar.activeContext(),
-                        mRegistrar.context().getPackageName() + ".fileProvider", apkFile);
+                Uri contentUri = FileProvider.getUriForFile(applicationContext,
+                        applicationContext.getPackageName() + ".fileProvider", apkFile);
                 intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
             } else {
                 intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
             }
-            mRegistrar.activity().startActivity(intent);
+            mActivity.startActivity(intent);
             if (result != null) {
                 result.success(true);
             }
@@ -143,4 +209,5 @@ public class AppInstallerPlugin implements MethodChannel.MethodCallHandler, Plug
         }
         return false;
     }
+
 }

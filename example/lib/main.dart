@@ -42,7 +42,7 @@ class _MyAppState extends State<MyApp> {
               SizedBox(height: 40),
               FlatButton.icon(
                 onPressed: () {
-                  AppInstaller.installApk('/sdcard/apk/app-debug.apk');
+                  AppInstaller.installApk('/sdcard/app/app-debug.apk');
                 },
                 icon: Icon(Icons.arrow_downward),
                 label: Text('Install Apk'),

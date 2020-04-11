@@ -4,6 +4,8 @@ Demonstrates how to use the app_installer plugin.
 
 [中文使用文档](https://github.com/yy1300326388/app_installer/tree/master/example/README_CN.md)
 
+[![Codemagic build status](https://api.codemagic.io/apps/5d5610bc6a6c3600097b4391/5d5610bc6a6c3600097b4390/status_badge.svg)](https://codemagic.io/apps/5d5610bc6a6c3600097b4391/5d5610bc6a6c3600097b4390/latest_build)
+
 ## Getting Started
 
 - Open Store

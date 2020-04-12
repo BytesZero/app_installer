@@ -6,20 +6,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.provider.Settings;
-
-import androidx.lifecycle.Lifecycle;
-
-import androidx.core.content.FileProvider;
-
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
 
 import java.io.File;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
-import io.flutter.embedding.engine.plugins.activity.ActivityControlSurface;
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodCall;
@@ -37,20 +33,14 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
     private Activity mActivity;
     private MethodChannel methodChannel;
 
-    private final Registrar mRegistrar;
-
-    public AppInstallerPlugin(Registrar mRegistrar) {
-        this.mRegistrar = mRegistrar;
-        this.mActivity = mRegistrar.activity();
-        this.mRegistrar.addActivityResultListener(this);
-    }
-
     /**
      * Plugin registration.
      */
     public static void registerWith(Registrar registrar) {
-        AppInstallerPlugin instance = new AppInstallerPlugin(registrar);
+        AppInstallerPlugin instance = new AppInstallerPlugin();
         instance.onAttachedToEngine(registrar.context(), registrar.messenger());
+        instance.onAttachedToActivity(registrar.activity());
+        registrar.addActivityResultListener(instance.getActivityResultListener());
     }
 
     @Override
@@ -65,7 +55,7 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
     }
 
     @Override
-    public void onDetachedFromEngine(FlutterPluginBinding binding) {
+    public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
         this.applicationContext = null;
         methodChannel.setMethodCallHandler(null);
         methodChannel = null;
@@ -73,8 +63,12 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
 
     @Override
     public void onAttachedToActivity(ActivityPluginBinding binding) {
-        this.mActivity = binding.getActivity();
-        binding.addActivityResultListener(this);
+        onAttachedToActivity(binding.getActivity());
+        binding.addActivityResultListener(getActivityResultListener());
+    }
+
+    private void onAttachedToActivity(Activity activity) {
+        this.mActivity = activity;
     }
 
     @Override
@@ -83,8 +77,11 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
     }
 
     @Override
-    public void onReattachedToActivityForConfigChanges(ActivityPluginBinding binding) {
+    public void onReattachedToActivityForConfigChanges(@NonNull ActivityPluginBinding binding) {
         onAttachedToActivity(binding);
+        binding.removeActivityResultListener(getActivityResultListener());
+        binding.addActivityResultListener(getActivityResultListener());
+
     }
 
     @Override
@@ -92,8 +89,17 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
         this.mActivity = null;
     }
 
+    /**
+     * 创建 ActivityResult 监听
+     *
+     * @return ActivityResult 监听
+     */
+    private PluginRegistry.ActivityResultListener getActivityResultListener() {
+        return this;
+    }
+
     @Override
-    public void onMethodCall(MethodCall call, Result result) {
+    public void onMethodCall(MethodCall call,@NonNull Result result) {
         String method = call.method;
         if (method.equals("goStore")) {
             String appId = (String) call.argument("androidAppId");

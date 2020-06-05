@@ -1,3 +1,7 @@
+## 0.3.0
+
+* Android 升级到 V2 新的 API
+
 ## 0.2.0
 
 * 修复 Android 崩溃 [#2](https://github.com/yy1300326388/app_installer/issues/2)

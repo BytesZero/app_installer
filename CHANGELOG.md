@@ -1,3 +1,7 @@
+## 0.4.0
+
+* Update Gradle version to 5.6.4
+
 ## 0.3.0
 
 * Android 升级到 V2 新的 API

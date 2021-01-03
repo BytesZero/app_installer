@@ -1,6 +1,5 @@
 package com.zero.app_installer;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -13,82 +12,41 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
-import io.flutter.embedding.engine.plugins.activity.ActivityAware;
-import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
-import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /**
  * AppInstallerPlugin
  */
-public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodChannel.MethodCallHandler {
+public class AppInstallerPlugin implements FlutterPlugin, MethodChannel.MethodCallHandler {
 
     private Context applicationContext;
-    private Activity mActivity;
-    private MethodChannel methodChannel;
 
-    /**
-     * Plugin registration.
-     */
-    public static void registerWith(Registrar registrar) {
-        AppInstallerPlugin instance = new AppInstallerPlugin();
-        instance.onAttachedToEngine(registrar.context(), registrar.messenger());
-        instance.onAttachedToActivity(registrar.activity());
+    private MethodChannel channel;
+
+    public AppInstallerPlugin() {
     }
+
 
     @Override
-    public void onAttachedToEngine(FlutterPluginBinding binding) {
-        onAttachedToEngine(binding.getApplicationContext(), binding.getBinaryMessenger());
-    }
-
-    private void onAttachedToEngine(Context applicationContext, BinaryMessenger messenger) {
-        this.applicationContext = applicationContext;
-        methodChannel = new MethodChannel(messenger, "app_installer");
-        methodChannel.setMethodCallHandler(this);
+    public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
+        channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "flutter_plugin");
+        channel.setMethodCallHandler(this);
+        this.applicationContext = flutterPluginBinding.getApplicationContext();
     }
 
     @Override
     public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
-        this.applicationContext = null;
-        methodChannel.setMethodCallHandler(null);
-        methodChannel = null;
+        channel.setMethodCallHandler(null);
     }
 
     @Override
-    public void onAttachedToActivity(ActivityPluginBinding binding) {
-        onAttachedToActivity(binding.getActivity());
-    }
-
-    private void onAttachedToActivity(Activity activity) {
-        this.mActivity = activity;
-    }
-
-    @Override
-    public void onDetachedFromActivityForConfigChanges() {
-
-    }
-
-    @Override
-    public void onReattachedToActivityForConfigChanges(@NonNull ActivityPluginBinding binding) {
-        onAttachedToActivity(binding);
-
-    }
-
-    @Override
-    public void onDetachedFromActivity() {
-        this.mActivity = null;
-    }
-
-
-    @Override
-    public void onMethodCall(MethodCall call,@NonNull Result result) {
+    public void onMethodCall(MethodCall call, @NonNull Result result) {
         String method = call.method;
         if (method.equals("goStore")) {
-            String appId = (String) call.argument("androidAppId");
-            goAppStore(mActivity, appId);
+            String appId = call.argument("androidAppId");
+            goAppStore(this.applicationContext, appId);
             result.success(true);
         } else if (method.equals("installApk")) {
             String filePath = call.argument("apkPath");
@@ -107,25 +65,20 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
      *
      * @param appId appId
      */
-    private void goAppStore(Activity activity, String appId) {
+    private void goAppStore(Context context, String appId) {
         String appPackageName;
         // 获取包名
         if (appId != null) {
             appPackageName = appId;
         } else {
-            appPackageName = activity.getPackageName();
+            appPackageName = context.getPackageName();
         }
         // 去应用商店
         Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName));
         marketIntent.addFlags(
                 Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-        activity.startActivity(marketIntent);
+        context.startActivity(marketIntent);
     }
-
-    // 安装apkFile
-    private File apkFile;
-    // 回调处理
-    private Result result;
 
     /**
      * 安装应用的流程
@@ -134,8 +87,6 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
      * @param result  返回结果
      */
     private void installProcess(File apkFile, Result result) {
-        this.apkFile = apkFile;
-        this.result = result;
         installApk(apkFile, result);
     }
 
@@ -156,7 +107,7 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
             } else {
                 intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
             }
-            mActivity.startActivity(intent);
+            applicationContext.startActivity(intent);
             if (result != null) {
                 result.success(true);
             }
@@ -165,10 +116,7 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
                 result.success(false);
             }
         }
-        this.apkFile = null;
-        this.result = null;
     }
-
 
 
 }

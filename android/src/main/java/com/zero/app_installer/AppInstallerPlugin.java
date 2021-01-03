@@ -1,12 +1,10 @@
 package com.zero.app_installer;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.provider.Settings;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -139,17 +137,6 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
         this.apkFile = apkFile;
         this.result = result;
         installApk(apkFile, result);
-    }
-
-    /**
-     * 设置安装未知来源App权限
-     */
-    @TargetApi(Build.VERSION_CODES.O)
-    private void startInstallPermissionSettingActivity() {
-        Uri packageURI = Uri.parse("package:" + applicationContext.getPackageName());
-        // 注意这个是8.0新API
-        Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI);
-        this.mActivity.startActivityForResult(intent, 10086);
     }
 
     /**

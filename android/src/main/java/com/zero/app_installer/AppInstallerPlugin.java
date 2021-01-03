@@ -31,7 +31,7 @@ public class AppInstallerPlugin implements FlutterPlugin, MethodChannel.MethodCa
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-        channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "flutter_plugin");
+        channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "app_installer");
         channel.setMethodCallHandler(this);
         this.applicationContext = flutterPluginBinding.getApplicationContext();
     }

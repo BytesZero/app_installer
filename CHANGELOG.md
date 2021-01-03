@@ -1,3 +1,7 @@
+## 0.5.0
+
+* 完整的 v2 迁移
+
 ## 0.4.0
 
 * Update Gradle version to 5.6.4

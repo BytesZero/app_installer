@@ -25,10 +25,10 @@ public class AppInstallerPlugin implements FlutterPlugin, MethodChannel.MethodCa
 
     private MethodChannel channel;
 
-    public AppInstallerPlugin() {
-    }
 
-
+    /**
+     * 注册插件
+     */
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
         channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "app_installer");
@@ -41,6 +41,9 @@ public class AppInstallerPlugin implements FlutterPlugin, MethodChannel.MethodCa
         channel.setMethodCallHandler(null);
     }
 
+    /**
+     * 方法实现
+     */
     @Override
     public void onMethodCall(MethodCall call, @NonNull Result result) {
         String method = call.method;
@@ -51,7 +54,8 @@ public class AppInstallerPlugin implements FlutterPlugin, MethodChannel.MethodCa
         } else if (method.equals("installApk")) {
             String filePath = call.argument("apkPath");
             if (!TextUtils.isEmpty(filePath)) {
-                installProcess(new File(filePath), result);
+                assert filePath != null;
+                installApk(new File(filePath), result);
             } else {
                 result.error("installApk", "apkPath is null", null);
             }
@@ -75,19 +79,11 @@ public class AppInstallerPlugin implements FlutterPlugin, MethodChannel.MethodCa
         }
         // 去应用商店
         Intent marketIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName));
-        marketIntent.addFlags(
-                Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            marketIntent.addFlags(
+                    Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        }
         context.startActivity(marketIntent);
-    }
-
-    /**
-     * 安装应用的流程
-     *
-     * @param apkFile apk 文件
-     * @param result  返回结果
-     */
-    private void installProcess(File apkFile, Result result) {
-        installApk(apkFile, result);
     }
 
     /**
@@ -117,6 +113,5 @@ public class AppInstallerPlugin implements FlutterPlugin, MethodChannel.MethodCa
             }
         }
     }
-
 
 }

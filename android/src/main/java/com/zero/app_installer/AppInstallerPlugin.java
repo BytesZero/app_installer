@@ -25,7 +25,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 /**
  * AppInstallerPlugin
  */
-public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodChannel.MethodCallHandler, PluginRegistry.ActivityResultListener {
+public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodChannel.MethodCallHandler {
 
     private Context applicationContext;
     private Activity mActivity;
@@ -38,7 +38,6 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
         AppInstallerPlugin instance = new AppInstallerPlugin();
         instance.onAttachedToEngine(registrar.context(), registrar.messenger());
         instance.onAttachedToActivity(registrar.activity());
-        registrar.addActivityResultListener(instance.getActivityResultListener());
     }
 
     @Override

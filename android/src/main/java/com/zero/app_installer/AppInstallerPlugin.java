@@ -151,31 +151,10 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
     private void installProcess(File apkFile, Result result) {
         this.apkFile = apkFile;
         this.result = result;
-        boolean haveInstallPermission;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            haveInstallPermission = this.applicationContext.getPackageManager().canRequestPackageInstalls();
-            if (!haveInstallPermission) {
-                startInstallPermissionSettingActivity();
-            } else {
-                // 有权限，开始安装
-                installApk(apkFile, result);
-            }
-        } else {
-            // 有权限，开始安装
-            installApk(apkFile, result);
-        }
+        installApk(apkFile, result);
     }
 
-    /**
-     * 设置安装未知来源App权限
-     */
-    @TargetApi(Build.VERSION_CODES.O)
-    private void startInstallPermissionSettingActivity() {
-        Uri packageURI = Uri.parse("package:" + applicationContext.getPackageName());
-        // 注意这个是8.0新API
-        Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI);
-        this.mActivity.startActivityForResult(intent, 10086);
-    }
+
 
     /**
      * 安装Apk
@@ -207,13 +186,5 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
         this.result = null;
     }
 
-    @Override
-    public boolean onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (requestCode == 10086 && resultCode == Activity.RESULT_OK) {
-            installProcess(apkFile, result);
-            return true;
-        }
-        return false;
-    }
 
 }

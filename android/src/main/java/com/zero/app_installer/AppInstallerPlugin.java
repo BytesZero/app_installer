@@ -1,10 +1,12 @@
 package com.zero.app_installer;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.Settings;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -19,7 +21,6 @@ import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /**
@@ -61,7 +62,6 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
     @Override
     public void onAttachedToActivity(ActivityPluginBinding binding) {
         onAttachedToActivity(binding.getActivity());
-        binding.addActivityResultListener(getActivityResultListener());
     }
 
     private void onAttachedToActivity(Activity activity) {
@@ -76,8 +76,6 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
     @Override
     public void onReattachedToActivityForConfigChanges(@NonNull ActivityPluginBinding binding) {
         onAttachedToActivity(binding);
-        binding.removeActivityResultListener(getActivityResultListener());
-        binding.addActivityResultListener(getActivityResultListener());
 
     }
 
@@ -86,17 +84,9 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
         this.mActivity = null;
     }
 
-    /**
-     * 创建 ActivityResult 监听
-     *
-     * @return ActivityResult 监听
-     */
-    private PluginRegistry.ActivityResultListener getActivityResultListener() {
-        return this;
-    }
 
     @Override
-    public void onMethodCall(MethodCall call, @NonNull Result result) {
+    public void onMethodCall(MethodCall call,@NonNull Result result) {
         String method = call.method;
         if (method.equals("goStore")) {
             String appId = (String) call.argument("androidAppId");
@@ -152,6 +142,17 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
     }
 
     /**
+     * 设置安装未知来源App权限
+     */
+    @TargetApi(Build.VERSION_CODES.O)
+    private void startInstallPermissionSettingActivity() {
+        Uri packageURI = Uri.parse("package:" + applicationContext.getPackageName());
+        // 注意这个是8.0新API
+        Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI);
+        this.mActivity.startActivityForResult(intent, 10086);
+    }
+
+    /**
      * 安装Apk
      *
      * @param apkFile 安装文件
@@ -180,6 +181,7 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
         this.apkFile = null;
         this.result = null;
     }
+
 
 
 }

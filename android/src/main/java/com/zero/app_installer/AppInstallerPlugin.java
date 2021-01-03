@@ -1,12 +1,10 @@
 package com.zero.app_installer;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
-import android.provider.Settings;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -99,7 +97,7 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
     }
 
     @Override
-    public void onMethodCall(MethodCall call,@NonNull Result result) {
+    public void onMethodCall(MethodCall call, @NonNull Result result) {
         String method = call.method;
         if (method.equals("goStore")) {
             String appId = (String) call.argument("androidAppId");
@@ -153,8 +151,6 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
         this.result = result;
         installApk(apkFile, result);
     }
-
-
 
     /**
      * 安装Apk

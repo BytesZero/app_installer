@@ -38,6 +38,7 @@ public class AppInstallerPlugin implements FlutterPlugin, MethodChannel.MethodCa
 
     @Override
     public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+        this.applicationContext = null;
         channel.setMethodCallHandler(null);
     }
 

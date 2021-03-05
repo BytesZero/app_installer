@@ -1,3 +1,7 @@
+## 1.0.0
+
+* Migrating to null safety
+
 ## 0.4.0
 
 * Update Gradle version to 5.6.4

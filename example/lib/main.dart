@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             children: <Widget>[
               SizedBox(height: 80),
-              FlatButton.icon(
+              TextButton.icon(
                 onPressed: () {
                   AppInstaller.goStore(androidAppId, iOSAppId);
                 },
@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
                 label: Text('Go Store'),
               ),
               SizedBox(height: 40),
-              FlatButton.icon(
+              TextButton.icon(
                 onPressed: () {
                   AppInstaller.goStore(androidAppId, iOSAppId, review: true);
                 },
@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
                 label: Text('Go Store Review'),
               ),
               SizedBox(height: 40),
-              FlatButton.icon(
+              TextButton.icon(
                 onPressed: () {
                   AppInstaller.installApk('/sdcard/app/app-debug.apk');
                 },

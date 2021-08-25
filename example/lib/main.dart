@@ -40,8 +40,15 @@ class _MyAppState extends State<MyApp> {
                 label: Text('Go Store Review'),
               ),
               SizedBox(height: 40),
+              Text(
+                '⚠️需要先允许读取存储权限才可以⚠️',
+                style: TextStyle(color: Colors.red),
+              ),
               TextButton.icon(
                 onPressed: () {
+                  // 需要先允许读取存储权限才可以
+                  // 需要先允许读取存储权限才可以
+                  // 需要先允许读取存储权限才可以
                   AppInstaller.installApk('/sdcard/app/app-debug.apk');
                 },
                 icon: Icon(Icons.arrow_downward),

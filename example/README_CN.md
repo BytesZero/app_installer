@@ -26,6 +26,8 @@ AppInstaller.goStore(androidAppId, iOSAppId, review: true);
 
 - 安装 Apk
 
+> ⚠️需要先允许读取存储权限才可以，不然会出现解析包错误⚠️
+
 ```dart
 AppInstaller.installApk('/sdcard/apk/app-debug.apk');
 ```

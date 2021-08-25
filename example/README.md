@@ -25,7 +25,7 @@ AppInstaller.goStore(androidAppId, iOSAppId, review: true);
 ```
 
 - Install Apk
-
+> ⚠️You need to allow read storage permission first, otherwise there will be a parsing error ⚠️
 ```dart
 AppInstaller.installApk('/sdcard/apk/app-debug.apk');
 ```

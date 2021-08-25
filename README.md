@@ -19,7 +19,7 @@ Install the application
 
 * Open google play app page
 * Install Apk File (Detect unknown source)
-
+> ⚠️You need to allow read storage permission first, otherwise there will be a parsing error ⚠️
 
 <img src="https://raw.githubusercontent.com/yy1300326388/app_installer/develop/images/Android_Go_Store.gif" width="220"/>
 <img src="https://raw.githubusercontent.com/yy1300326388/app_installer/develop/images/install_apk.gif" width="220"/>

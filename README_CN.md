@@ -19,7 +19,7 @@ App 安装器
 
 * 打开应用商店
 * 安装 Apk（检测未知来源）
-
+> ⚠️需要先允许读取存储权限才可以，不然会出现解析包错误⚠️
 
 <img src="https://raw.githubusercontent.com/yy1300326388/app_installer/develop/images/Android_Go_Store.gif" width="220"/>
 <img src="https://raw.githubusercontent.com/yy1300326388/app_installer/develop/images/install_apk.gif" width="220"/>

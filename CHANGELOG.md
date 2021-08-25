@@ -1,7 +1,7 @@
 ## 1.1.0
 
-* 修复 Android 11 上允许权限后应用重启的问题 [#5]，感谢 @yingzhong27
-* 必须允许应用程序存储权限，否则会出现解析包错误
+* Fix the issue that the application restarts after permission is allowed on Android 11 [#5], thanks @yingzhong27
+* Must allow the application to store permissions, otherwise there will be a parsing package error
 
 ## 1.0.0
 

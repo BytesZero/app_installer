@@ -151,19 +151,7 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
     private void installProcess(File apkFile, Result result) {
         this.apkFile = apkFile;
         this.result = result;
-        boolean haveInstallPermission;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            haveInstallPermission = this.applicationContext.getPackageManager().canRequestPackageInstalls();
-            if (!haveInstallPermission) {
-                startInstallPermissionSettingActivity();
-            } else {
-                // 有权限，开始安装
-                installApk(apkFile, result);
-            }
-        } else {
-            // 有权限，开始安装
-            installApk(apkFile, result);
-        }
+        installApk(apkFile, result);
     }
 
     /**

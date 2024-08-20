@@ -2,7 +2,7 @@
 
 如何使用 App 安装器插件
 
-[English](https://github.com/yy1300326388/app_installer/tree/master/example)
+[English](https://github.com/BytesZero/app_installer/tree/master/example)
 
 [![Codemagic build status](https://api.codemagic.io/apps/5d5610bc6a6c3600097b4391/5d5610bc6a6c3600097b4390/status_badge.svg)](https://codemagic.io/apps/5d5610bc6a6c3600097b4391/5d5610bc6a6c3600097b4390/latest_build)
 

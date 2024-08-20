@@ -1,3 +1,8 @@
+## 1.0.0
+
+* 修复 Android resource linking failed [#14](https://github.com/BytesZero/app_installer/issues/14)
+* 适配最新 Flutter 版本
+
 ## 0.5.0
 
 * 修复 Android 11 上允许权限后应用重启的问题 [#5]，感谢 @yingzhong27
@@ -13,7 +18,7 @@
 
 ## 0.2.0
 
-* 修复 Android 崩溃 [#2](https://github.com/yy1300326388/app_installer/issues/2)
+* 修复 Android 崩溃 [#2](https://github.com/BytesZero/app_installer/issues/2)
 
 ## 0.1.0
 

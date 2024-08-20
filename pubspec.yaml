@@ -1,13 +1,13 @@
 name: app_installer
 description: A new Android + iOS app installer plugin , supports opening app stores and editor reviews, as well as installing Apk files.
-version: 0.5.0
-homepage: https://github.com/yy1300326388/app_installer
-documentation: https://github.com/yy1300326388/app_installer/tree/master/example
+version: 1.0.0
+homepage: https://github.com/BytesZero/app_installer
+documentation: https://github.com/BytesZero/app_installer/tree/master/example
 publish_to: https://pub.dev
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
-  flutter: ">=1.12.0"
+  sdk: ">=2.12.0 <4.0.0"
+  flutter: ">=2.5.0"
 
 dependencies:
   flutter:

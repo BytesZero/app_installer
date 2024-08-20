@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             children: <Widget>[
               SizedBox(height: 80),
-              FlatButton.icon(
+              TextButton.icon(
                 onPressed: () {
                   AppInstaller.goStore(androidAppId, iOSAppId);
                 },
@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp> {
                 label: Text('Go Store'),
               ),
               SizedBox(height: 40),
-              FlatButton.icon(
+              TextButton.icon(
                 onPressed: () {
                   AppInstaller.goStore(androidAppId, iOSAppId, review: true);
                 },
@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
                 '⚠️需要先允许读取存储权限才可以⚠️',
                 style: TextStyle(color: Colors.red),
               ),
-              FlatButton.icon(
+              TextButton.icon(
                 onPressed: () {
                   // 需要先允许读取存储权限才可以
                   // 需要先允许读取存储权限才可以

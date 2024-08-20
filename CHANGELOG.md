@@ -1,5 +1,4 @@
 ## 1.0.0
-
 * 修复 Android resource linking failed [#14](https://github.com/BytesZero/app_installer/issues/14)
 * 适配最新 Flutter 版本
 

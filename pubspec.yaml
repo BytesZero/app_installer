@@ -3,7 +3,6 @@ description: A new Android + iOS app installer plugin , supports opening app sto
 version: 1.2.0
 homepage: https://github.com/BytesZero/app_installer
 documentation: https://github.com/BytesZero/app_installer/tree/master/example
-publish_to: https://pub.dev
 
 environment:
   sdk: ">=2.12.0 <4.0.0"

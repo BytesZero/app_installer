@@ -1,6 +1,6 @@
 name: app_installer
 description: A new Android + iOS app installer plugin , supports opening app stores and editor reviews, as well as installing Apk files.
-version: 1.0.0
+version: 1.2.0
 homepage: https://github.com/BytesZero/app_installer
 documentation: https://github.com/BytesZero/app_installer/tree/master/example
 publish_to: https://pub.dev

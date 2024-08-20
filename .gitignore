@@ -12,3 +12,5 @@ pubspec.lock
 org.eclipse.buildship.core.prefs
 .flutter-plugins-dependencies
 flutter_export_environment.sh
+.fvm
+*.lock

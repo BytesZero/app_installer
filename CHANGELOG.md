@@ -1,6 +1,15 @@
-## 1.0.0
+## 1.2.0
 * 修复 Android resource linking failed [#14](https://github.com/BytesZero/app_installer/issues/14)
 * 适配最新 Flutter 版本
+
+## 1.1.0
+
+* Fix the issue that the application restarts after permission is allowed on Android 11 [#5], thanks @yingzhong27
+* Must allow the application to store permissions, otherwise there will be a parsing package error
+
+## 1.0.0
+
+* Migrating to null safety
 
 ## 0.5.0
 

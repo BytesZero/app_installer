@@ -1,4 +1,5 @@
-# app_installer
+<h1 align="center">Flutter App Installer</h1>
+<h5 align="center">Open AppStore and install apk </h5>
 
 <p align="center">
 <a href="https://pub.dev/packages/app_installer">

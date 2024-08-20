@@ -1,6 +1,18 @@
-# app_installer
+<h1 align="center">Flutter App Installer</h1>
+<h5 align="center">打开应用商店和安装 APK</h5>
 
-App 安装器
+<p align="center">
+<a href="https://pub.dev/packages/app_installer">
+<img src="https://img.shields.io/pub/v/app_installer?logo=dart"/>
+<img src="https://img.shields.io/badge/OS-iOS%20%7C%20Android-blue?logo=preact"/>
+</a>
+<a href="https://github.com/BytesZero/app_installer">
+<img src="https://github.com/BytesZero/app_installer/actions/workflows/flutter.yml/badge.svg">
+<img src=https://img.shields.io/github/stars/BytesZero/app_installer?color=brightgreen>
+</a>
+</p>
+
+
 
 [English](https://github.com/BytesZero/app_installer)
 

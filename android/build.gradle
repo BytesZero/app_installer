@@ -30,6 +30,10 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+
+    if (project.android.hasProperty("namespace")) {
+        namespace 'com.zero.app_installer'
+    }
 }
 
 dependencies {

@@ -1,3 +1,7 @@
+## 1.2.1
+* 适配 Android Gradle namespace [#15](https://github.com/BytesZero/app_installer/issues/15)
+* 适配最新 Flutter 版本
+
 ## 1.2.0
 * 修复 Android resource linking failed [#14](https://github.com/BytesZero/app_installer/issues/14)
 * 适配最新 Flutter 版本

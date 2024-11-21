@@ -3,7 +3,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'app_installer'
-  s.version          = '1.2.0'
+  s.version          = '1.2.1'
   s.summary          = 'App Installer'
   s.description      = 'App Installer'
   s.homepage         = 'https://github.com/BytesZero/app_installer'

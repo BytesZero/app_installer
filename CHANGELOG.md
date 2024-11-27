@@ -1,3 +1,7 @@
+## 1.3.0
+* 增加 MacOS 支持
+* 支持应用内评分，不需要跳出 App
+
 ## 1.2.1
 * 适配 Android Gradle namespace [#15](https://github.com/BytesZero/app_installer/issues/15)
 * 适配最新 Flutter 版本

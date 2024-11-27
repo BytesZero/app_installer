@@ -4,7 +4,7 @@
 <p align="center">
 <a href="https://pub.dev/packages/app_installer">
 <img src="https://img.shields.io/pub/v/app_installer?logo=dart"/>
-<img src="https://img.shields.io/badge/OS-iOS%20%7C%20Android-blue?logo=preact"/>
+<img src="https://img.shields.io/badge/OS-iOS%20%7C%20Android%20%7C%20MacOS-blue?logo=preact"/>
 </a>
 <a href="https://github.com/BytesZero/app_installer">
 <img src="https://github.com/BytesZero/app_installer/actions/workflows/flutter.yml/badge.svg">
@@ -16,23 +16,27 @@
 
 [English](https://github.com/BytesZero/app_installer)
 
-### iOS
+### 功能
 
-* 打开 AppStore 应用信息页面
-* 打开 AppStore 评价应用页面
+#### 打开应用商店页面
 
- <img src="https://raw.githubusercontent.com/BytesZero/app_installer/develop/images/iOS_Go_Store.gif" width="220"/>
-<img src="https://raw.githubusercontent.com/BytesZero/app_installer/develop/images/iOS_Review.gif" width="220"/>
+| iOS | Android | MacOS |
+|-----|---------|-------|
+| <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/iOS_Go_Store.gif" width="220"/> | <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/Android_Go_Store.gif" width="220"/> | <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/MacOS_Go_Store.png" width="220"/> |
 
+#### 应用商店评价
 
-### Android
+| iOS | Android | MacOS |
+|-----|---------|-------|
+| <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/review_ios.png" width="220"/> | _不可用_ | <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/review_macos.png" width="220"/> |
 
-* 打开应用商店
-* 安装 Apk（检测未知来源）
-> ⚠️需要先允许读取存储权限才可以，不然会出现解析包错误⚠️
+#### 安装 APK 文件
 
-<img src="https://raw.githubusercontent.com/BytesZero/app_installer/develop/images/Android_Go_Store.gif" width="220"/>
-<img src="https://raw.githubusercontent.com/BytesZero/app_installer/develop/images/install_apk.gif" width="220"/>
+| Android |
+|---------|
+| <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/install_apk.gif" width="220"/> |
+
+> ⚠️ 需要先允许读取存储权限才可以，不然会出现解析包错误 ⚠️
 
 ## 入门文档
 

@@ -44,22 +44,3 @@
 ## Issues and feedback
 
 Please file [issues](https://github.com/BytesZero/app_installer/issues/new) to send feedback or report a bug. Thank you!
-
-### 关注我
-
-- 遇到问题可以找我帮助解决（联系方式在 [`GitHub`](https://github.com/BytesZero) 主页）
-- 持续分享优质的 `Flutter` 文章和视频
-- 不定期分享 `Flutter` 开发小技巧
-- 百万级 `Flutter` 应用架构经验
-
-<p>
-  <a href="https://github.com/BytesZero">
-    <img width="200" alt="github" src="https://raw.githubusercontent.com/BytesZero/BytesZero/main/images/follow/github_follow.png">
-  </a>
-  <a href="https://juejin.cn/user/764915820276439">
-    <img width="200" alt="juejin" src="https://raw.githubusercontent.com/BytesZero/BytesZero/main/images/follow/juejin_follow.png">
-  </a>
-  <a href="https://space.bilibili.com/1698847208">
-    <img width="200" alt="csdn" src="https://raw.githubusercontent.com/BytesZero/BytesZero/main/images/follow/bilibili_follow.png">
-  </a>
-</p>

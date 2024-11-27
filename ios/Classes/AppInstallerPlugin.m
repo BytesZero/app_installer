@@ -22,7 +22,7 @@
         } else {
             NSString* iTunesLink = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/xy/app/foo/id%@", appId];
             //打开 App Store
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink] options:@{} completionHandler:nil];
             result(nil);
         }
     }

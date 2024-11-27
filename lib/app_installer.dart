@@ -9,12 +9,14 @@ class AppInstaller {
   ///去应用商店
   ///[androidAppId] Android package name
   ///[iOSAppId] iOS Bundle Id
+  ///[macOSAppId] macOS Bundle Id
   ///[review] iOS App Store evaluation
   static Future<void> goStore(String androidAppId, String iOSAppId,
-      {bool review = false}) async {
+      {String? macOSAppId, bool review = false}) async {
     _channel.invokeMethod('goStore', {
       'androidAppId': androidAppId,
       'iOSAppId': iOSAppId,
+      'macOSAppId': macOSAppId,
       'review': review,
     });
   }

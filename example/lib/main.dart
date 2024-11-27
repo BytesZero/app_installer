@@ -12,6 +12,7 @@ class _MyAppState extends State<MyApp> {
   /// 应用市场信息
   String androidAppId = 'com.tengyue360.student';
   String iOSAppId = '1440249706';
+  String macOSAppId = '836500024';
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,11 @@ class _MyAppState extends State<MyApp> {
               SizedBox(height: 80),
               TextButton.icon(
                 onPressed: () {
-                  AppInstaller.goStore(androidAppId, iOSAppId);
+                  AppInstaller.goStore(
+                    androidAppId,
+                    iOSAppId,
+                    macOSAppId: macOSAppId,
+                  );
                 },
                 icon: Icon(Icons.store),
                 label: Text('Go Store'),
@@ -34,7 +39,12 @@ class _MyAppState extends State<MyApp> {
               SizedBox(height: 40),
               TextButton.icon(
                 onPressed: () {
-                  AppInstaller.goStore(androidAppId, iOSAppId, review: true);
+                  AppInstaller.goStore(
+                    androidAppId,
+                    iOSAppId,
+                    macOSAppId: macOSAppId,
+                    review: true,
+                  );
                 },
                 icon: Icon(Icons.rate_review),
                 label: Text('Go Store Review'),

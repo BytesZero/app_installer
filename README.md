@@ -18,25 +18,21 @@
 
 #### Open App Store Page
 
-| Platform | Screenshot |
-|----------|-------------|
-| iOS      | <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/iOS_Go_Store.gif" width="220"/> |
-| Android  | <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/Android_Go_Store.gif" width="220"/> |
-| MacOS    | <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/MacOS_Go_Store.png" width="220"/> |
+| iOS | Android | MacOS |
+|-----|---------|-------|
+| <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/iOS_Go_Store.gif" width="220"/> | <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/Android_Go_Store.gif" width="220"/> | <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/MacOS_Go_Store.png" width="220"/> |
 
 #### App Store Reviews
 
-| Platform | Screenshot |
-|----------|-------------|
-| iOS      | <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/review_ios.png" width="220"/> |
-| Android  | _Not Available_ |
-| MacOS    | <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/review_macos.png" width="220"/> |
+| iOS | Android | MacOS |
+|-----|---------|-------|
+| <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/review_ios.png" width="220"/> | _Not Available_ | <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/review_macos.png" width="220"/> |
 
 #### Install APK File
 
-| Platform | Screenshot |
-|----------|-------------|
-| Android  | <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/install_apk.gif" width="220"/> |
+| Android |
+|---------|
+| <img src="https://raw.githubusercontent.com/BytesZero/app_installer/master/images/install_apk.gif" width="220"/> |
 
 > ⚠️ You need to allow read storage permission first on Android, otherwise there will be a parsing error ⚠️
 

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:app_installer/app_installer.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
-  _MyAppState createState() => _MyAppState();
+  MyAppState createState() => MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class MyAppState extends State<MyApp> {
   /// 应用市场信息
   String androidAppId = 'com.tengyue360.student';
   String iOSAppId = '1440249706';
@@ -24,7 +26,7 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: Column(
             children: <Widget>[
-              SizedBox(height: 80),
+              const SizedBox(height: 80),
               TextButton.icon(
                 onPressed: () {
                   AppInstaller.goStore(
@@ -33,10 +35,10 @@ class _MyAppState extends State<MyApp> {
                     macOSAppId: macOSAppId,
                   );
                 },
-                icon: Icon(Icons.store),
-                label: Text('Go Store'),
+                icon: const Icon(Icons.store),
+                label: const Text('Go Store'),
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               TextButton.icon(
                 onPressed: () {
                   AppInstaller.goStore(
@@ -46,11 +48,11 @@ class _MyAppState extends State<MyApp> {
                     review: true,
                   );
                 },
-                icon: Icon(Icons.rate_review),
-                label: Text('Go Store Review'),
+                icon: const Icon(Icons.rate_review),
+                label: const Text('Go Store Review'),
               ),
-              SizedBox(height: 40),
-              Text(
+              const SizedBox(height: 40),
+              const Text(
                 '⚠️需要先允许读取存储权限才可以⚠️',
                 style: TextStyle(color: Colors.red),
               ),
@@ -61,8 +63,8 @@ class _MyAppState extends State<MyApp> {
                   // 需要先允许读取存储权限才可以
                   AppInstaller.installApk('/sdcard/app/app-debug.apk');
                 },
-                icon: Icon(Icons.arrow_downward),
-                label: Text('Install Apk'),
+                icon: const Icon(Icons.arrow_downward),
+                label: const Text('Install Apk'),
               ),
             ],
           ),

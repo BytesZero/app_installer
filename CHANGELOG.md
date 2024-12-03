@@ -1,3 +1,6 @@
+## 1.3.1
+* 修复 Android 上过时的 API [#10](https://github.com/BytesZero/app_installer/issues/10), 感谢 @2000calories @Tindtily 
+
 ## 1.3.0
 * 增加 MacOS 支持
 * 支持应用内评分，不需要跳出 App

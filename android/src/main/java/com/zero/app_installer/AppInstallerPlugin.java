@@ -22,7 +22,6 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /**
  * AppInstallerPlugin
@@ -32,16 +31,6 @@ public class AppInstallerPlugin implements FlutterPlugin, ActivityAware, MethodC
     private Context applicationContext;
     private Activity mActivity;
     private MethodChannel methodChannel;
-
-    /**
-     * Plugin registration.
-     */
-    public static void registerWith(Registrar registrar) {
-        AppInstallerPlugin instance = new AppInstallerPlugin();
-        instance.onAttachedToEngine(registrar.context(), registrar.messenger());
-        instance.onAttachedToActivity(registrar.activity());
-        registrar.addActivityResultListener(instance.getActivityResultListener());
-    }
 
     @Override
     public void onAttachedToEngine(FlutterPluginBinding binding) {
